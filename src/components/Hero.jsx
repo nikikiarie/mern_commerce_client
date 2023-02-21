@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 import ArrowForwardIosOutlinedIcon from "@mui/icons-material/ArrowForwardIosOutlined";
-import surface from "../assets/surface.jpg";
+
 import {sliderItems} from '../data'
 
 const Hero = () => {
