@@ -9,6 +9,8 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { decreaseProductAmount, increaseProductAmount } from "../redux/cartSlice";
 import {useDispatch} from 'react-redux'
+import { publicRequest } from "../makeRequest";
+
 
 
 
@@ -18,18 +20,20 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   console.log(cart);
   const user = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.user.user.accessToken);
+
   const dispatch = useDispatch()
 
   const handleClick = () => {
     const paymentCheckout = async () => {
       try {
-        const res = await axios.post(
-          "http://localhost:5000/api/checkout/payment",
+        const res = await publicRequest.post(
+          "/checkout/payment",
           {
             cartItems: cart.products,
             userId: user._id,
-          }
-          // { headers: { token: `Bearer ${token}` } }
+          },
+          { headers: { token: `Bearer ${token}` } }
         );
         console.log(res.data);
         if(res.data.url){
